@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://img.shields.io/discord/579573155388063744?link=https%3A%2F%2Fdiscord.gg%2FvdBCFwdBFv">
-    <img src="https://cdn.discordapp.com/attachments/1001194875464728687/1140440386893008947/68747470733a2f2f7777772e67756172647371756172652e636f6d2f68756266732f4c6f676f732f50726f47756172642d4c6f676f2d456d61696c2e706e67.png" alt="Axius" width="400">
+    <img src="https://cdn.discordapp.com/attachments/1001194875464728687/1140705061450829906/68747470733a2f2f7777772e67756172647371756172652e636f6d2f68756266732f4c6f676f732f50726f47756172642d4c6f676f2d456d61696c2e706e67.png" alt="Axius" width="400">
   </a>
 </div>
 
@@ -31,23 +31,28 @@
 
 ## 📚 Overview
 
-Welcome to Axius! 🎉 This mod brings an exciting array of unique enchantments and attributes to your equipment and tools, revolutionizing your gameplay. Our meticulous attention to balance ensures a seamless integration with the core game mechanics.
-
-Axius is structured into "Modules," each dedicated to a specific category of enchantment and attributes. Enchantments follow the familiar acquisition process, while attributes emerge upon crafting or discovering new equipment. Attributes are the key to determining an item's worthiness, and they can be honed further using a smithing table, empowering your existing tools and gear.
+Welcome to Axius!
 
 ## ✨ New Features
 
 Axius comes packed with thrilling features:
 
+- **Keybindings**
+  - [ ] Toggle enchantment Keybindings ( Silk-touch, Frost-Walker )
 - **ToolTips**
-    - [ ] Toggleable Enchantments
+  - [ ] Enchantment Icons
+  - [ ] Enchantment Status ( Enabled/Disabled )
+  - [ ] Tool Rarity
+  - [ ] Tool Stats ( Craftsmanship )
 - **Appraisal Hud**
-    - [ ] Enchantment Rarity Scaling
-    - [ ] Enchantment Compatibilities
-    - [ ] Enchantment Descriptions
-    - [ ] Attribute Statistics
-    - [ ] Interactive ToolTip
-    - [ ] User-Friendly Interface
+  - [ ] Selective Toggle Enchantments
+  - [ ] Enchantment Rarity Scaling
+  - [ ] Enchantment Compatibilities
+  - [ ] Enchantment Descriptions
+  - [ ] Attribute Statistics
+- **Tool Stats**
+  - [ ] Tool Rarity
+  - [ ] Craftsmanship
 
 ## ❓ Getting Help
 
