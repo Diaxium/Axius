@@ -1,6 +1,6 @@
-package com.app.util.input;
+package com.axius.util.input;
 
-import com.app.api.Input;
+import com.axius.api.Input;
 
 /**
  * Contains classes related to handling collections and data structures.
@@ -17,6 +17,10 @@ public class Update {
      * @param newState The new state to set for the keys.
      */
     public static void keyState(Map<Integer, Input.KeyboardEvent> keys, int keyCode, Input.Type newState) {
+        keys.values().stream()
+                .filter(state -> state.getKeymap().getKey().getValue() != state.getKey())
+                .forEach(state -> state.setKey(state.getKeymap().getKey().getValue()));
+
         keys.keySet().stream()
                 .filter(key -> key == keyCode).filter(key -> !keys.get(key).isBinded())
                 .forEach(key -> state(keys.get(key), newState));

@@ -3,6 +3,7 @@ package com.axius.server.packets.inventory.item.tool;
 /**
  * Contains classes related to networking and packet handling.
  */
+import com.axius.controller.Axius;
 import com.axius.server.IPacket;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
@@ -102,7 +103,9 @@ public class EnchantPacket implements IPacket {
             switch (this.operation) {
                 case ADD -> enchantments.putIfAbsent(enchantment, this.level);
                 case REMOVE -> enchantments.remove(enchantment);
-                case MODIFY -> enchantments.merge(enchantment, this.level, Integer::max);
+                case MODIFY -> enchantments.computeIfPresent(enchantment, (existingEnchantment, existingLevel) -> {
+                    return this.level;
+                });
             }
 
             EnchantmentHelper.setEnchantments(enchantments, player.getInventory().getItem(slot));

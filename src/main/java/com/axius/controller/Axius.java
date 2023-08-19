@@ -5,9 +5,8 @@ package com.axius.controller;
  */
 import com.axius.api.Config;
 import com.axius.api.Input;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.config.ModConfig;
-import com.axius.packages.keybindings.toggles.Enchantments;
+import com.axius.packages.keybindings.toggles.ToggleEnchant;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -47,7 +46,7 @@ public class Axius {
     /**
      * The mod ID.
      */
-    public static final String MODID = "app";
+    public static final String MODID = "axius";
 
     /**
      * The logger instance.
@@ -77,8 +76,8 @@ public class Axius {
         inputManager = new Input();
         Settings = new Config();
 
-        new Enchantments();
         InitializeSettings();
+        InitializeToggles();
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -96,25 +95,14 @@ public class Axius {
      */
     private void InitializeSettings() {
         // Create a ForgeConfigSpec builder for the 'general' settings category.
-        ForgeConfigSpec.Builder General = Settings.builder()
-                .push("general");
+    }
 
-        // Register the 'general' settings configuration with the specified path.
-        Settings.registerConfig(ModConfig.Type.COMMON, General.build(), String.format("%s/%s", Axius.MODID, "General"));
-
-        // Create a ForgeConfigSpec builder for the 'Attributes' settings category.
-        ForgeConfigSpec.Builder Attributes = Settings.builder()
-                .push("attributes");
-
-        // Register the 'Attributes' settings configuration with the specified path.
-        Settings.registerConfig(ModConfig.Type.COMMON, Attributes.build(), String.format("%s/%s", Axius.MODID, "Attributes"));
-
-        // Create a ForgeConfigSpec builder for the 'Enchantments' settings category.
-        ForgeConfigSpec.Builder Enchantments = Settings.builder()
-                .push("enchantments");
-
-        // Register the 'Attributes' settings configuration with the specified path.
-        Settings.registerConfig(ModConfig.Type.COMMON, Enchantments.build(), String.format("%s/%s", Axius.MODID, "Enchantments"));
+    /**
+     * Initializes the toggles for specific enchantments.
+     */
+    private void InitializeToggles() {
+        // Enchants:
+        ToggleEnchant Silk_touch = new ToggleEnchant(Enchantments.SILK_TOUCH, 20, Input.Key.KEY_LEFT_SHIFT);
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.app.util.inventory.item;
+package com.axius.util.inventory.item;
 
 public class Name {
 }

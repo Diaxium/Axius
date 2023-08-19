@@ -1,3 +1,4 @@
 {
+  "axius.packages.keybindings.toggles.silk_touch_tooltip" : "§d[%s§d]§r Silk Touch",
   "axius.api.input.keys" : "Axius Keys"
 }

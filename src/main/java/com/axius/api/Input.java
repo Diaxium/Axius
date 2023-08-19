@@ -3,9 +3,12 @@ package com.axius.api;
 /**
  * Contains classes related to handling collections and data structures.
  */
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import net.minecraft.client.KeyMapping;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.Options;
+import org.apache.commons.lang3.ArrayUtils;
+
+import java.util.*;
 
 /**
  * The Input class provides functionality for handling keyboard and key binding events.
@@ -53,6 +56,7 @@ public class Input {
         Type state;
         final Type type;
         final IState listener;
+        final KeyMapping keymap;
         Boolean binded = false;
 
         /**
@@ -69,9 +73,16 @@ public class Input {
             this.type = state;
             this.listener = listener;
             this.state = Type.Release;
+            this.keymap = new KeyMapping(name, key, "axius.api.input.keys");
 
             // Create a new event map for the given key if it doesn't exist
             keyInputs.putIfAbsent(key, this);
+
+            //
+            Options options = Minecraft.getInstance().options;
+            options.keyMappings = ArrayUtils.add(options.keyMappings, this.keymap);
+
+            this.key = this.keymap.getKey().getValue();
         }
 
         /**
@@ -87,9 +98,16 @@ public class Input {
             this.listener = listener;
             this.type = Type.Default;
             this.state = Type.Release;
+            this.keymap = new KeyMapping(name, key, "axius.api.input.keys");
 
             // Create a new event map for the given key if it doesn't exist
             keyInputs.putIfAbsent(key, this);
+
+            //
+            Options options = Minecraft.getInstance().options;
+            options.keyMappings = ArrayUtils.add(options.keyMappings, this.keymap);
+
+            this.key = this.keymap.getKey().getValue();
         }
 
         /**
@@ -104,9 +122,16 @@ public class Input {
             this.listener = null;
             this.type = Type.Default;
             this.state = Type.Release;
+            this.keymap = new KeyMapping(name, key, "axius.api.input.keys");
 
             // Create a new event map for the given key if it doesn't exist
             keyInputs.putIfAbsent(key, this);
+
+            //
+            Options options = Minecraft.getInstance().options;
+            options.keyMappings = ArrayUtils.add(options.keyMappings, this.keymap);
+
+            this.key = this.keymap.getKey().getValue();
         }
 
         /**
@@ -184,6 +209,10 @@ public class Input {
          */
         public boolean isHolding() {
             return this.getState().equals(Type.Hold);
+        }
+
+        public KeyMapping getKeymap() {
+            return this.keymap;
         }
     }
 
@@ -353,6 +382,20 @@ public class Input {
      */
     public static ArrayList<KeyBindingEvent> getbindedInputs() {
         return (ArrayList<KeyBindingEvent>) bindedInputs;
+    }
+
+    /**
+     * Returns the human-readable name of the key associated with the given key code.
+     *
+     * @param keyCode The key code for which to retrieve the name.
+     * @return The name of the key.
+     */
+    public static String getKeyName(int keyCode) {
+        Optional<KeyMapping> optionalMapping = Arrays.stream(Minecraft.getInstance().options.keyMappings)
+                .filter(mapping -> mapping.getKey().getValue() == keyCode)
+                .findFirst();
+
+        return optionalMapping.map(keyMapping -> keyMapping.getTranslatedKeyMessage().getString()).orElse("Unknown Key");
     }
 
     /**

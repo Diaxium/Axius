@@ -1,4 +1,4 @@
-package com.app.util;
+package com.axius.util;
 
 /**
  * This class provides various utility methods for mathematical calculations and conversions.

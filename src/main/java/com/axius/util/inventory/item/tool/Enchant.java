@@ -19,7 +19,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Map;
 
-
 /**
  * The Enchant class provides methods to interact with enchantments on ItemStacks.
  */
@@ -107,5 +106,15 @@ public class Enchant {
         }
 
         return 0;
+    }
+
+    /**
+     * Retrieves the name of a specific enchantment.
+     *
+     * @param enchant The enchantment for which to retrieve the name.
+     * @return The name of the enchantment, or an empty string if not found.
+     */
+    public static String getName(Enchantment enchant) {
+        return ForgeRegistries.ENCHANTMENTS.getKey(enchant).getPath();
     }
 }
